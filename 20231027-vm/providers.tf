@@ -8,6 +8,9 @@ terraform {
   # 今から書かれるコードで利用するprovider(依存関係)を指定する
   required_providers {
     # Hashicorp社が提供するAzure用のproviderがazurerm
+    # azapi_resourceっていうのもあるようで、これはAzure APIを直接叩くprovider
+    # Terraformらしくある程度抽象化して使うにはazurermを利用する
+    # 一方で、プレビューとかGA前の機能を使いたい場合はazapi_resourceを利用する(バージョン指定ができる)
     azurerm = {
         source = "hashicorp/azurerm"
         # azurermの3.0以上のバージョンを利用する
