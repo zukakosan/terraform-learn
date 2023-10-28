@@ -9,7 +9,9 @@
 resource "azurerm_resource_group" "rg_main" {
   location = var.resource_group_location
 #   terraformのrandomプロバイダーのrandom_petを利用して、ランダムな文字列を生成する
-  name = "${formatdate("YYYYMMDD", timestamp())}-${random_pet.suffix.id}"
+  name = "rg-tfvm-${random_pet.suffix.id}"
+  # 日付で動的に名前を付けると、デプロイ時に別リソース扱いになってしまい、元のリソースグループが消え、新規のリソースグループが生成されてしまうのでやめた
+  # name = "${formatdate("YYYYMMDD", timestamp())}-${random_pet.suffix.id}"
 }
 
 # 仮想ネットワークの作成
